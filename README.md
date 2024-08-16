@@ -17,7 +17,6 @@ Supongamos que estamos desarrollando un sistema de gestión de documentos, y nec
 
 ![Factory Mehtod](images/classes_factory_method.png)
 
-
 ### Explicación:
 
 1. Producto (Document): Define la interfaz de los documentos, que tiene dos métodos: open y save.
