@@ -1,2 +1,1 @@
-# design_patterns
-Design Patterns Explaination
+# Patrones de Diseño
