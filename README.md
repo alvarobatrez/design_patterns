@@ -75,3 +75,26 @@ Imaginemos que estamos desarrollando un sistema para construir autos. Un auto ti
 3. Concrete Builders (SportsCarBuilder, EconomyCarBuilder): Implementan la interfaz CarBuilder para construir una versión específica del coche. Cada ConcreteBuilder sabe cómo construir y ensamblar las partes de un coche de acuerdo a su tipo (deportivo o económico).
 4. Director: La clase Director conoce la secuencia en la que deben construirse las partes del coche. El Director invoca los métodos del Builder para construir las diferentes partes del coche, pero no sabe nada sobre el coche en sí mismo.
 5. Cliente (Client): El cliente crea un Builder concreto, lo configura en el Director y luego invoca la construcción. Finalmente, recupera el producto completo.
+
+## Prototype
+
+El patrón de diseño Prototype es un patrón creacional que permite crear nuevos objetos copiando o clonando una instancia existente, conocida como prototipo. Este patrón es útil cuando la creación de un objeto es costosa o compleja, o cuando quieres evitar la creación directa de objetos a través de la construcción (usando new en C++ o llamando a constructores en Python) y prefieres crear un nuevo objeto clonando uno existente.
+
+### Conceptos Clave:
+
+1. Prototype: Es una interfaz que declara el método de clonación (clone()). Este método se encargará de crear una copia del objeto.
+2. ConcretePrototype: Implementa la interfaz Prototype y proporciona la lógica para clonar instancias de sí mismo. Es el objeto que se clonará.
+3. Cliente (Client): Usa el método clone() del prototipo para crear nuevos objetos a partir de un prototipo existente sin necesidad de saber la clase concreta del objeto que está clonando.
+
+### Ejemplo
+
+Supongamos que estamos desarrollando un sistema para modelar figuras geométricas, donde algunas de estas figuras tienen características complejas y sería costoso crearlas desde cero. Usaremos el patrón Prototype para clonar figuras existentes y personalizarlas según sea necesario.
+
+![Prototype](images/classes_prototype.png)
+
+### Explicación:
+
+1. Prototype (Shape): Es la interfaz abstracta que declara el método clone(). Esta interfaz también incluye métodos comunes que pueden ser utilizados por cualquier objeto Shape.
+2. ConcretePrototype (Circle, Rectangle): Implementan la interfaz Shape y proporcionan la lógica específica para clonar su propia instancia (clone()). Estos son los objetos que se clonarán.
+3. Cliente (PrototypeManager): El cliente gestiona y utiliza los prototipos. Registra los prototipos en un mapa o diccionario y permite la creación de nuevas instancias de objetos clonando los prototipos registrados.
+4. Clonación: En C++, la clonación se realiza utilizando el método clone() que crea una copia profunda del objeto mediante la copia del estado del objeto original. En Python, se usa copy.deepcopy para crear una copia profunda del objeto, asegurando que cualquier objeto anidado también sea clonado correctamente.
