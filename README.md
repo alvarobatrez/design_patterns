@@ -1,4 +1,4 @@
-# Patrones de Diseño
+# Patrones Creacionales
 
 ## Factory Method
 
