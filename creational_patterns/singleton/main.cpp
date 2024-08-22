@@ -45,7 +45,8 @@ int main()
     Singleton &instance2 = Singleton::getInstance();
     instance2.doSomething();
 
-    std::cout << "Are both instances the same? " << (&instance1 == &instance2) << std::endl;
+    std::cout << "Are both instances the same? " << 
+    std::boolalpha << static_cast<bool>(&instance1 == &instance2) << std::endl;
     
     return 0;
 }
