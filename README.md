@@ -144,7 +144,7 @@ En Python, la implementación de un Singleton es un poco más sencilla debido a 
 
 ### Explicación:
 
-1. __new__ Método: En Python, __new__ es el método que controla la creación de nuevas instancias de la clase. En este caso, verifica si la instancia ya ha sido creada (_instance). Si no lo ha sido, crea una nueva instancia usando super().__new__(cls). Si ya existe una instancia, simplemente devuelve la existente.
+1. __new__ Método: En Python, __new__ es el método que controla la creación de nuevas instancias de la clase. En este caso, verifica si la instancia ya ha sido creada (_instance). Si no lo ha sido, crea una nueva instancia usando super().__new__(cls). Si ya existe una instancia, simplemente devuelve la existente.plpl
 2. _instance Atributo: _instance es un atributo de clase que mantiene la referencia a la instancia única del Singleton.
 3. Acceso Global: El patrón Singleton permite que la instancia única sea accedida desde cualquier parte del código de manera global, asegurando que siempre se utilice la misma instancia.
 
