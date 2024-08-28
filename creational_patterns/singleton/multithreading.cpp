@@ -1,19 +1,15 @@
 #include <iostream>
 #include <mutex>
+#include <thread>
 
 class Singleton
 {
     private:
 
-    Singleton()
-    {
-        std::cout << "Singleton instance created\n";
-    }
+    Singleton() {}
+    ~Singleton() {}
 
-    ~Singleton()
-    {
-        std::cout << "Singleton instance destroyed\n";
-    }
+    static Singleton *instance_;
 
     public:
 
@@ -21,8 +17,13 @@ class Singleton
     static Singleton &getInstance()
     {
         // Instancia se crea la primera vez que se llama este método
-        static Singleton instance;
-        return instance;
+        static std::once_flag flag;
+        std::call_once(flag, []()
+        {
+            instance_ = new Singleton();
+            std::cout << "Singleton instance created\n";
+        });
+        return *instance_;
     }
 
     // Ejemplo de un método de la clase Singleton
@@ -36,16 +37,21 @@ class Singleton
     Singleton& operator=(const Singleton &) = delete;
 };
 
+Singleton *Singleton::instance_ = nullptr;
+
+void threadFunction()
+{
+    Singleton &instance = Singleton::getInstance();
+    instance.doSomething();
+}
+
 int main()
 {
-    Singleton &instance1 = Singleton::getInstance();
-    instance1.doSomething();
+    std::thread t1(threadFunction);
+    std::thread t2(threadFunction);
 
-    Singleton &instance2 = Singleton::getInstance();
-    instance2.doSomething();
-
-    std::cout << "Are both instances the same? " << 
-    std::boolalpha << static_cast<bool>(&instance1 == &instance2) << std::endl;
+    t1.join();
+    t2.join();
     
     return 0;
 }
