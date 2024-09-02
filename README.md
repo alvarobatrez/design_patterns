@@ -155,3 +155,31 @@ En aplicaciones multihilo, es crucial asegurarse de que el Singleton sea seguro 
 ### Conclusión
 
 El patrón Singleton es útil para situaciones en las que solo se necesita una instancia de una clase, y se requiere un punto global de acceso. Sin embargo, debe usarse con cuidado, ya que puede introducir problemas si no se maneja adecuadamente en entornos multihilo, y también puede dificultar la escritura de pruebas unitarias debido a la dificultad para "resetear" el estado del Singleton entre pruebas. Es importante considerar estos factores y utilizar técnicas de diseño complementarias cuando sea necesario.
+
+## Adapter
+
+El patrón de diseño Adapter es un patrón estructural que permite que dos interfaces incompatibles trabajen juntas. Es comúnmente utilizado cuando se necesita que una clase existente funcione con una clase o un conjunto de clases que tienen una interfaz diferente a la que se espera. El patrón Adapter actúa como un intermediario que traduce la interfaz de una clase en una interfaz que otra clase pueda entender.
+
+### Conceptos Clave:
+
+1. Target (Objetivo): Define la interfaz que el cliente espera usar. Esta es la interfaz que el Adapter debe implementar.
+2. Adapter: Es la clase que convierte la interfaz de la clase existente (Adaptee) en la interfaz esperada por el cliente (Target). Implementa la interfaz del Target y traduce las llamadas al Adaptee.
+3. Adaptee: Es la clase existente que tiene una interfaz incompatible con la del Target. El Adapter convierte la interfaz del Adaptee en una interfaz compatible con el Target.
+4. Cliente (Client): El cliente utiliza la interfaz del Target y no sabe que está interactuando con un Adaptee a través de un Adapter.
+
+### Ejemplo
+
+Supongamos que tenemos un sistema que dibuja figuras geométricas usando una API antigua (LegacyDrawingAPI) que tiene métodos específicos para dibujar círculos y cuadrados. Queremos integrar esta API antigua con un nuevo sistema que espera una interfaz moderna (DrawingAPI) para dibujar cualquier figura geométrica utilizando métodos más genéricos. Usaremos el patrón Adapter para hacer que ambas APIs sean compatibles.
+
+![Prototype](images/classes_adapter.png)
+
+### Explicación:
+
+1. Target (DrawingAPI): Define la interfaz que el cliente espera, con métodos genéricos para dibujar figuras geométricas.
+2. Adaptee (LegacyDrawingAPI): Es la clase existente que tiene métodos específicos para dibujar figuras, pero con una interfaz que no coincide con la del Target.
+3. Adapter (DrawingAPIAdapter): Implementa la interfaz DrawingAPI y traduce las llamadas a la interfaz de LegacyDrawingAPI.
+4. Cliente (Shape): Utiliza la interfaz DrawingAPI para dibujar formas. No necesita saber que está usando una API legada gracias al Adapter.
+
+### Conclusión
+
+El patrón Adapter es extremadamente útil para integrar componentes existentes en un sistema nuevo, especialmente cuando esos componentes tienen interfaces incompatibles con las requeridas por el nuevo sistema. Este patrón permite que las clases colaboren de manera que no podrían hacerlo de otra manera, todo sin modificar el código existente del Adaptee. Es un patrón muy utilizado en la programación orientada a objetos, y facilita la reutilización de código en diferentes contextos.
