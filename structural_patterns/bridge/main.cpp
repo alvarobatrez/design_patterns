@@ -96,7 +96,35 @@ class RemoteControl
         {
             device_->powerOn();
         }
-        
+        isOn_ = !isOn_;
+    }
+
+    virtual void volumeUp()
+    {
+        int volume = device_->getVolume();
+        device_->setVolume(volume + 1);
+    }
+
+    virtual void volumeDown()
+    {
+        int volume = device_->getVolume();
+        device_->setVolume(volume - 1);
+    }
+
+    virtual ~RemoteControl() = default;
+};
+
+// Refined Abstraction: Un control remoto más avanzado con más funciones
+class AdvancedRemoteControl : public RemoteControl
+{
+    public:
+
+    AdvancedRemoteControl(Device *device) : RemoteControl(device) {}
+
+    void mute()
+    {
+        device_->setVolume(0);
+        std::cout << "Device is muted\n";
     }
 };
 
