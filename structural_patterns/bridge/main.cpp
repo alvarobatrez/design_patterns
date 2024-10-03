@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 
+// Implementor: Define la interfaz para los controles
 class Device
 {
     public:
@@ -130,7 +131,24 @@ class AdvancedRemoteControl : public RemoteControl
 
 int main()
 {
-    
+    // Crear un dispositivo TV y un control remoto básico para él
+    TV tv;
+    RemoteControl basicRemote(&tv);
+
+    basicRemote.togglePower();
+    basicRemote.volumeUp();
+    basicRemote.volumeDown();
+    basicRemote.togglePower();
+
+    std::cout << std::endl;
+
+    Radio radio;
+    AdvancedRemoteControl advacedRemote(&radio);
+
+    advacedRemote.togglePower();
+    advacedRemote.volumeUp();
+    advacedRemote.mute();
+    advacedRemote.togglePower();
     
     return 0;
 }
