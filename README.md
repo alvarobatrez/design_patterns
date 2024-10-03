@@ -183,3 +183,33 @@ Supongamos que tenemos un sistema que dibuja figuras geométricas usando una API
 ### Conclusión
 
 El patrón Adapter es extremadamente útil para integrar componentes existentes en un sistema nuevo, especialmente cuando esos componentes tienen interfaces incompatibles con las requeridas por el nuevo sistema. Este patrón permite que las clases colaboren de manera que no podrían hacerlo de otra manera, todo sin modificar el código existente del Adaptee. Es un patrón muy utilizado en la programación orientada a objetos, y facilita la reutilización de código en diferentes contextos.
+
+## Bridge
+
+El patrón de diseño Bridge es un patrón estructural que desacopla una abstracción de su implementación, de manera que ambas puedan variar de forma independiente. En otras palabras, separa la parte conceptual de una clase de la parte específica o concreta que realiza el trabajo, lo que permite cambiar ambos lados (abstracción e implementación) sin afectar el otro.
+
+El patrón Bridge es útil cuando se tiene una jerarquía de clases con múltiples dimensiones que varían de manera independiente. Al separar la abstracción de su implementación, se puede evitar el crecimiento exponencial de subclases que heredan de cada dimensión.
+
+### Conceptos Clave:
+
+1. Abstraction: Representa una interfaz general que el cliente utiliza. Tiene una referencia a la implementación concreta, llamada Implementor.
+2. RefinedAbstraction: Es una clase que extiende o especializa la interfaz de la Abstraction.
+3. Implementor: Declara una interfaz que será implementada por las clases concretas. Esta interfaz no tiene que coincidir exactamente con la de Abstraction. La Abstraction delega las operaciones a la implementación.
+4. ConcreteImplementor: Proporciona la implementación concreta de la interfaz Implementor.
+
+### Ejemplo
+
+Supongamos que estamos desarrollando un sistema para representar dispositivos y sus funciones. Tenemos dos tipos de dispositivos: TV y Radio, y cada dispositivo puede tener diferentes formas de control (por ejemplo, control remoto básico o avanzado). Usaremos el patrón Bridge para separar las clases de dispositivos de las clases de controles.
+
+![Prototype](images/classes_bridge.png)
+
+### Explicación:
+
+1. Implementor (Device): Define una interfaz genérica para los dispositivos, con métodos como powerOn, powerOff, y setVolume.
+2. Concrete Implementors (TV, Radio): Implementan la interfaz Device para dispositivos específicos (TV y Radio).
+3. Abstraction (RemoteControl): Define una interfaz para el control remoto, que opera sobre un Device. Mantiene una referencia a un Device y delega las operaciones de encendido/apagado y ajuste de volumen a este.
+4. Refined Abstraction (AdvancedRemoteControl): Extiende RemoteControl agregando funcionalidad adicional, como el método mute.
+
+### Conclusión
+
+El patrón Bridge es extremadamente útil cuando se tiene una jerarquía de clases en dos dimensiones que deben variar independientemente, como dispositivos y controles en este ejemplo. Este patrón proporciona flexibilidad y evita la creación de una explosión de subclases, permitiendo que la abstracción (por ejemplo, los controles remotos) y las implementaciones (los dispositivos) evolucionen de forma independiente.
